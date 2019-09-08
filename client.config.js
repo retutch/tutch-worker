@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
     mode: "development",
     entry: {
-        activity: path.join(__dirname, "src", "test.js"),
+        activity: path.join(__dirname, "src", "demo.js"),
     },
     output: {
         filename: "client.js",

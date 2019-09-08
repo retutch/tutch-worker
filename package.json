@@ -12,7 +12,7 @@
         "webpack:worker": "webpack --config worker.config.js --mode production",
         "tsc": "tsc",
         "pythonserver": "python -m http.server",
-        "build": "npm-run-all --parallel webpack:worker tsc",
+        "build": "npm-run-all tsc webpack:worker",
         "start": "npm-run-all --parallel watch:worker watch:client pythonserver"
     },
     "files": [
