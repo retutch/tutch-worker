@@ -1,6 +1,10 @@
 Tutch Worker
 ============
 
+[![Build Status](https://travis-ci.org/retutch/tutch-worker.svg?branch=master)](https://travis-ci.org/retutch/tutch-worker?branch=master)
+[![NPM Module](https://img.shields.io/npm/v/tutch-worker.svg)](https://www.npmjs.com/package/tutch-worker)
+
+
 A WebWorker-friendly setup for evaluating [Tutch](https://github.com/avocado-productions/tutch) in the browser.
 
 Usage
