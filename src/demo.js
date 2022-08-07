@@ -1,1 +1,1 @@
-Tutch = require(".").default;
+Tutch = require('.').default;

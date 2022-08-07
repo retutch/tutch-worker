@@ -1,47 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
-<head>
-<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
 
-<title>Tutch-Worker Test Page</title>
-<meta name="description" content="The HTML5 Herald">
-<meta name="author" content="SitePoint">
-<script src="/client.js"></script>
-<script>
-function onSuccess(justifications) {
-    if (justifications.some(just => just.type !== "Justified")) {
-        console.log('Tutch ran, some inferences were not justified.');
-    } else {
-        console.log('Tutch ran, all inferences are justified.')
-    }
-    console.log(justifications);
-}
+    <title>Tutch-Worker Test Page</title>
+    <meta name="description" content="The HTML5 Herald" />
+    <meta name="author" content="SitePoint" />
+    <script src="/client.js"></script>
+    <script>
+      function onSuccess(justifications) {
+        if (justifications.some((just) => just.type !== 'Justified')) {
+          console.log('Tutch ran, some inferences were not justified.');
+        } else {
+          console.log('Tutch ran, all inferences are justified.');
+        }
+        console.log(justifications);
+      }
 
-function onError(msg, loc) {
-    console.log(`Error: ${msg}`);
-    console.log(loc);
-}
+      function onError(msg, loc) {
+        console.log(`Error: ${msg}`);
+        console.log(loc);
+      }
 
-const callTutch = Tutch({
-    url: "./worker.js",
-    onSuccess,
-    onError,
-});
+      const callTutch = Tutch({
+        url: './worker.js',
+        onSuccess,
+        onError,
+      });
 
-function runTutch() {
-    callTutch(document.getElementById("text").value);
-}
-</script>
+      function runTutch() {
+        callTutch(document.getElementById('text').value);
+      }
+    </script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     This is a demo of running Tutch in a web worker. Output is sent to the console.
-    <textarea id="text" onInput="runTutch()" rows="20", cols="90"></textarea>
+    <textarea id="text" onInput="runTutch()" rows="20" , cols="90"></textarea>
     <div>
-        <ul id="list">
-        </ul>
+      <ul id="list"></ul>
     </div>
-</body>
+  </body>
 </html>
