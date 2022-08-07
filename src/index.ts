@@ -19,30 +19,30 @@ export * from './message';
  * outdated `text`.
  */
 export default function makeTutchWorker(options: {
-    url: string;
-    onSuccess: (justs: Justification[]) => void;
-    onError: (errorMessage: string, loc: SourceLocation | null) => void;
+  url: string;
+  onSuccess: (justs: Justification[]) => void;
+  onError: (errorMessage: string, loc: SourceLocation | null) => void;
 }): (text: string) => void {
-    const { url, onSuccess, onError } = options;
-    const worker: Worker = new Worker(url);
-    let sequenceNumber = 0;
+  const { url, onSuccess, onError } = options;
+  const worker: Worker = new Worker(url);
+  let sequenceNumber = 0;
 
-    worker.onmessage = ({ data }) => {
-        const response: Response = data;
-        if (response.sequenceNumber !== sequenceNumber) return; // Ignore out-of-sequence messages
-        if (response.type === 'Success') {
-            onSuccess(response.justifications);
-        } else {
-            onError(response.errorMessage, response.loc);
-        }
-    };
+  worker.onmessage = ({ data }) => {
+    const response: Response = data;
+    if (response.sequenceNumber !== sequenceNumber) return; // Ignore out-of-sequence messages
+    if (response.type === 'Success') {
+      onSuccess(response.justifications);
+    } else {
+      onError(response.errorMessage, response.loc);
+    }
+  };
 
-    worker.onerror = err => {
-        onError(`There was an unexpected error with Tutch: ${JSON.stringify(err)}`, null);
-    };
+  worker.onerror = (err) => {
+    onError(`There was an unexpected error with Tutch: ${JSON.stringify(err)}`, null);
+  };
 
-    return text => {
-        sequenceNumber += 1;
-        worker.postMessage({ text, sequenceNumber });
-    };
+  return (text) => {
+    sequenceNumber += 1;
+    worker.postMessage({ text, sequenceNumber });
+  };
 }
