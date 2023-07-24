@@ -21,12 +21,12 @@ function doWork() {
     };
   } catch (err) {
     delay = 0;
-    if (err.name === 'ParsingError') {
+    if ((err as any).name === 'ParsingError') {
       response = {
         type: 'Error',
         sequenceNumber: currentSequenceNumber,
         errorMessage: `${err}`,
-        loc: err.loc,
+        loc: (err as any).loc,
       };
     } else {
       console.log(err);

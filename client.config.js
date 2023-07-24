@@ -13,6 +13,6 @@ module.exports = {
     extensions: ['.jsx', '.js', '.tsx', '.ts'],
   },
   module: {
-    rules: [{ test: /.tsx?$/, loader: 'awesome-typescript-loader' }],
+    rules: [{ test: /.tsx?$/, loader: 'ts-loader' }],
   },
 };
